@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">JobPortal</div>
+    <nav>
+      <button onclick="showSection('jobs')">Jobs</button>
+      <button onclick="showSection('companies')">Companies</button>
+      <button onclick="showSection('salaries')">Salaries</button>
+      <button onclick="showSection('resources')">Resources</button>
+    </nav>
+    <div class="auth-buttons">
+      <button onclick="openModal('loginModal')">Login</button>
+      <button onclick="openModal('signupModal')">Signup</button>
+      <button id="postJobBtn" onclick="openModal('postJobModal')" disabled>Post a Job</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- JOBS -->
+    <section id="jobs-section" class="tab-section">
+      <div class="filters">
+        <h3>Job Type</h3>
+        <label><input type="checkbox" value="Full Time"> Full Time</label>
+        <label><input type="checkbox" value="Part Time"> Part Time</label>
+        <label><input type="checkbox" value="Contract"> Contract</label>
+        <label><input type="checkbox" value="Remote"> Remote</label>
+
+        <h3>Location</h3>
+        <label><input type="checkbox" value="New York"> New York</label>
+        <label><input type="checkbox" value="San Francisco"> San Francisco</label>
+        <label><input type="checkbox" value="London"> London</label>
+        <label><input type="checkbox" value="Berlin"> Berlin</label>
+
+        <h3>Experience Level</h3>
+        <label><input type="checkbox" value="Entry Level"> Entry Level</label>
+        <label><input type="checkbox" value="Mid Level"> Mid Level</label>
+        <label><input type="checkbox" value="Senior Level"> Senior Level</label>
+
+        <button onclick="clearFilters()">Clear Filters</button>
+      </div>
+
+      <div class="job-list" id="job-list"></div>
+      <div class="job-detail" id="job-detail">
+        <p>Select a job to view details</p>
+      </div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section id="companies-section" class="tab-section hidden"></section>
+
+    <!-- SALARIES -->
+    <section id="salaries-section" class="tab-section hidden"></section>
+
+    <!-- RESOURCES -->
+    <section id="resources-section" class="tab-section hidden">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="#">Resume Building Guide</a></li>
+        <li><a href="#">Interview Preparation</a></li>
+        <li><a href="#">Top Career Blogs</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal hidden">
+    <div class="modal-card">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email">
+      <div class="password-box">
+        <input type="password" id="loginPass" placeholder="Password">
+        <span class="toggle-eye" onclick="togglePassword('loginPass')">👁️</span>
+      </div>
+      <p class="password-hint">Min 8 chars, 1 uppercase, 1 lowercase, 1 number/symbol</p>
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div id="signupModal" class="modal hidden">
+    <div class="modal-card">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Signup</h2>
+      <input type="text" id="signupName" placeholder="Name">
+      <input type="email" id="signupEmail" placeholder="Email">
+      <div class="password-box">
+        <input type="password" id="signupPass" placeholder="Password">
+        <span class="toggle-eye" onclick="togglePassword('signupPass')">👁️</span>
+      </div>
+      <p class="password-hint">Min 8 chars, 1 uppercase, 1 lowercase, 1 number/symbol</p>
+      <select id="signupRole">
+        <option value="candidate">Candidate</option>
+        <option value="recruiter">Recruiter</option>
+      </select>
+      <button onclick="signup()">Signup</button>
+    </div>
+  </div>
+
+  <!-- POST JOB MODAL -->
+  <div id="postJobModal" class="modal hidden">
+    <div class="modal-card small-modal">
+      <span class="close" onclick="closeModal('postJobModal')">&times;</span>
+      <h2>Post a Job</h2>
+      <input type="text" id="post-title" placeholder="Job Title">
+      <input type="text" id="post-company" placeholder="Company Name">
+      <input type="text" id="post-location" placeholder="Location">
+      <input type="text" id="post-type" placeholder="Job Type (Full Time, Part Time, Contract)">
+      <input type="text" id="post-salary" placeholder="Salary Range">
+      <textarea id="post-desc" placeholder="Job Description"></textarea>
+      <button onclick="postJob()">Submit Job</button>
+    </div>
+  </div>
+
+  <!-- APPLY MODAL -->
+  <div id="applyModal" class="modal hidden">
+    <div class="modal-card">
+      <span class="close" onclick="closeModal('applyModal')">&times;</span>
+      <h2>Apply for Job</h2>
+      <input type="text" id="appName" placeholder="Your Name">
+      <input type="email" id="appEmail" placeholder="Your Email">
+      <textarea id="appQual" placeholder="Your Qualifications"></textarea>
+      <button id="appSubmit">Submit Application</button>
+      <div id="appSuccess" class="success hidden"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
